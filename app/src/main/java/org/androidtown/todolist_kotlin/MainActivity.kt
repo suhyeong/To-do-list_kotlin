@@ -1,6 +1,9 @@
 package org.androidtown.todolist_kotlin
 
-import android.graphics.Typeface.BOLD
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Typeface.*
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -13,10 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val today_fragment = TodayFragment()
-    val yesterday_fragment = YesterdayFragment()
-    val tomorrow_fragment = TomorrowFragment()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,31 +25,29 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_drag_handle_black_24dp)
 
+        SelectedButton(today_button)
+        setFragment(TodayFragment())
+
         yesterday_button.setOnClickListener {
-            yesterday_button.setBackgroundResource(R.drawable.button_select)
-            today_button.setBackgroundResource(R.color.transparency)
-            tomorrow_button.setBackgroundResource(R.color.transparency)
-            var temp = supportFragmentManager.beginTransaction()
-            temp.replace(R.id.todo_fragment, yesterday_fragment)
-            temp.commit()
-        }
-        today_button.setOnClickListener {
-            today_button.setBackgroundResource(R.drawable.button_select)
-            yesterday_button.setBackgroundResource(R.color.transparency)
-            tomorrow_button.setBackgroundResource(R.color.transparency)
-            var temp = supportFragmentManager.beginTransaction()
-            temp.replace(R.id.todo_fragment, today_fragment)
-            temp.commit()
-        }
-        tomorrow_button.setOnClickListener {
-            tomorrow_button.setBackgroundResource(R.drawable.button_select)
-            today_button.setBackgroundResource(R.color.transparency)
-            yesterday_button.setBackgroundResource(R.color.transparency)
-            var temp = supportFragmentManager.beginTransaction()
-            temp.replace(R.id.todo_fragment, tomorrow_fragment)
-            temp.commit()
+            SelectedButton(yesterday_button)
+            unSelectedButton(today_button)
+            unSelectedButton(tomorrow_button)
+            setFragment(YesterdayFragment())
         }
 
+        today_button.setOnClickListener {
+            SelectedButton(today_button)
+            unSelectedButton(yesterday_button)
+            unSelectedButton(tomorrow_button)
+            setFragment(TodayFragment())
+        }
+
+        tomorrow_button.setOnClickListener {
+            SelectedButton(tomorrow_button)
+            unSelectedButton(today_button)
+            unSelectedButton(yesterday_button)
+            setFragment(TomorrowFragment())
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -60,5 +57,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun unSelectedButton(button: Button?) {
+        button?.setTypeface(SANS_SERIF, NORMAL)
+        button?.setBackgroundResource(R.color.white)
+        button?.setTextColor(Color.parseColor("#CECECE"))
+    }
+
+    private fun SelectedButton(button: Button?) {
+        button?.setTypeface(SANS_SERIF,BOLD)
+        button?.setBackgroundResource(R.drawable.button_select)
+        button?.setTextColor(Color.parseColor("#000000"))
+    }
+
+    private fun setFragment(fragment: Fragment?) {
+        fragment?.let { supportFragmentManager.beginTransaction().replace(R.id.todo_fragment, it).commit() }
     }
 }

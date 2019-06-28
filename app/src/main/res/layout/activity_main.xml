@@ -19,7 +19,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TODAY TO DO"
+            android:text="Just."
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="20sp"/>
     </android.support.v7.widget.Toolbar>
@@ -31,44 +33,6 @@
         app:scale_base_height="1920"
         tools:ignore="MissingConstraints">
 
-        <Button
-            android:id="@+id/yesterday_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparency"
-            android:text="Y E S T E R D A Y"
-            android:fontFamily="sans-serif"
-            app:scale_width="360"
-            app:scale_height="150"
-            app:scale_top="150"
-            app:scale_textsize="30"/>
-
-        <Button
-            android:id="@+id/today_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparency"
-            android:text="T O D A Y"
-            android:fontFamily="sans-serif"
-            app:scale_width="360"
-            app:scale_height="150"
-            app:scale_top="150"
-            app:scale_left="360"
-            app:scale_textsize="30"/>
-
-        <Button
-            android:id="@+id/tomorrow_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparency"
-            android:text="T O M O R R O W"
-            android:fontFamily="sans-serif"
-            app:scale_width="360"
-            app:scale_height="150"
-            app:scale_left="720"
-            app:scale_top="150"
-            app:scale_textsize="30"/>
-
         <View
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,6 +40,52 @@
             app:scale_width="1080"
             app:scale_height="150"
             app:scale_top="150" />
+
+        <Button
+            android:id="@+id/yesterday_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Y E S T E R D A Y"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            android:textColor="@color/gray"
+            style="?android:attr/borderlessButtonStyle"
+            app:scale_width="360"
+            app:scale_height="160"
+            app:scale_top="145"
+            app:scale_textsize="30"/>
+
+        <Button
+            android:id="@+id/today_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="T O D A Y"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            style="?android:attr/borderlessButtonStyle"
+            app:scale_width="360"
+            app:scale_height="160"
+            app:scale_top="145"
+            app:scale_left="360"
+            app:scale_textsize="30"/>
+
+        <Button
+            android:id="@+id/tomorrow_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="T O M O R R O W"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            android:textColor="@color/gray"
+            style="?android:attr/borderlessButtonStyle"
+            app:scale_width="360"
+            app:scale_height="160"
+            app:scale_left="720"
+            app:scale_top="145"
+            app:scale_textsize="30"/>
 
         <FrameLayout
             android:id="@+id/todo_fragment"
