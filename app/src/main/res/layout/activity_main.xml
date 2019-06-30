@@ -54,7 +54,7 @@
             app:scale_width="360"
             app:scale_height="160"
             app:scale_top="145"
-            app:scale_textsize="30"/>
+            app:scale_textsize="35"/>
 
         <Button
             android:id="@+id/today_button"
@@ -69,7 +69,7 @@
             app:scale_height="160"
             app:scale_top="145"
             app:scale_left="360"
-            app:scale_textsize="30"/>
+            app:scale_textsize="35"/>
 
         <Button
             android:id="@+id/tomorrow_button"
@@ -85,7 +85,7 @@
             app:scale_height="160"
             app:scale_left="720"
             app:scale_top="145"
-            app:scale_textsize="30"/>
+            app:scale_textsize="35"/>
 
         <FrameLayout
             android:id="@+id/todo_fragment"

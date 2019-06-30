@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".TodayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/todolist_none_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NONE To Do List !"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/todolistview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="today fragment" />
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>
