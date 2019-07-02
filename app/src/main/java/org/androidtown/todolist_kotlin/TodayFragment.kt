@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.fragment_today.*
 
 class TodayFragment : Fragment() {
 
+    val data: ArrayList<ListData> = ArrayList()
+    lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -25,8 +28,12 @@ class TodayFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_today, container, false)
 
-        todolistview.adapter = ListViewAdapter()
-        //todolistview.layoutManager = LinearLayoutManager(context)
+        data.add(ListData("test1", "13:00"))
+        data.add(ListData("test2", "09:00"))
+
+        recyclerView = view.findViewById(R.id.todolistview) as RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = ListViewAdapter(requireContext(), data)
 
         return view
     }
