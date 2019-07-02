@@ -10,12 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_today.*
 
 class TodayFragment : Fragment() {
 
-    val data: ArrayList<ListData> = ArrayList()
-    lateinit var recyclerView: RecyclerView
+    val today_data: ArrayList<ListData> = ArrayList()
+    lateinit var today_recyclerView: RecyclerView
+    lateinit var todo_none: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +30,18 @@ class TodayFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_today, container, false)
 
-        data.add(ListData("test1", "13:00"))
-        data.add(ListData("test2", "09:00"))
+        todo_none = view.findViewById(R.id.today_todolist_none_text) as TextView
 
-        recyclerView = view.findViewById(R.id.todolistview) as RecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ListViewAdapter(requireContext(), data)
+        today_data.add(ListData("test1", "13:00"))
+        today_data.add(ListData("test2", "09:00"))
+
+        today_recyclerView = view.findViewById(R.id.today_todolistview) as RecyclerView
+        today_recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        today_recyclerView.adapter = ListViewAdapter(requireContext(), today_data)
+
+        if(ListViewAdapter(requireContext(), today_data).itemCount == 0) {
+            todo_none.visibility = View.VISIBLE
+        }
 
         return view
     }
