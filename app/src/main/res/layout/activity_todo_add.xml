@@ -7,4 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".TodoAddActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:id="@+id/main_toolbar"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="20sp"/>
+    </android.support.v7.widget.Toolbar>
+
 </android.support.constraint.ConstraintLayout>

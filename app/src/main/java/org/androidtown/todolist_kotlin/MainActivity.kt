@@ -15,7 +15,7 @@ import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +49,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             unSelectedButton(yesterday_button)
             setFragment(TomorrowFragment())
         }
-
-        todo_add.setOnClickListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -76,10 +74,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setFragment(fragment: Fragment?) {
         fragment?.let { supportFragmentManager.beginTransaction().replace(R.id.todo_fragment, it).commit() }
-    }
-
-    override fun onClick(v: View?) {
-        val addIntent = Intent(this, TodoAddActivity::class.java)
-        startActivity(addIntent)
     }
 }

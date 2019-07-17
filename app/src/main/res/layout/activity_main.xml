@@ -94,20 +94,6 @@
             app:scale_width="1080"
             app:scale_height="1500"
             app:scale_top="310" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/todo_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/white"
-            android:foreground="@drawable/ic_add_black_24dp"
-            android:foregroundGravity="center"
-            app:elevation="1dp"
-            app:borderWidth="0dp"
-            app:scale_width="220"
-            app:scale_height="220"
-            app:scale_top="1450" />
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
 </android.support.constraint.ConstraintLayout>

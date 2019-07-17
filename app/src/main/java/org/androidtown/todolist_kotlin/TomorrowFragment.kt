@@ -1,8 +1,10 @@
 package org.androidtown.todolist_kotlin
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,11 +15,12 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_today.*
 import kotlinx.android.synthetic.main.fragment_tomorrow.*
 
-class TomorrowFragment : Fragment() {
+class TomorrowFragment : Fragment(), View.OnClickListener {
 
     val tomorrow_data: ArrayList<ListData> = ArrayList()
     lateinit var tomorrow_recyclerView: RecyclerView
     lateinit var tomorrow_none: TextView
+    lateinit var tomorrow_add: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,14 @@ class TomorrowFragment : Fragment() {
            tomorrow_none.visibility = View.VISIBLE
         }
 
+        tomorrow_add = view.findViewById(R.id.tomorrow_todo_add) as FloatingActionButton
+        tomorrow_add.setOnClickListener(this)
+
         return view
+    }
+
+    override fun onClick(v: View?) {
+        val addIntent = Intent(requireContext(), TodoAddActivity::class.java)
+        startActivity(addIntent)
     }
 }
