@@ -1,5 +1,6 @@
 package org.androidtown.todolist_kotlin
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -23,6 +24,9 @@ class TodayFragment : Fragment(), View.OnClickListener {
     lateinit var todo_none: TextView
     lateinit var today_add: FloatingActionButton
 
+    lateinit var todo_text:String
+    lateinit var todo_time:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,9 +39,6 @@ class TodayFragment : Fragment(), View.OnClickListener {
         val view = inflater.inflate(R.layout.fragment_today, container, false)
 
         todo_none = view.findViewById(R.id.today_todolist_none_text) as TextView
-
-        today_data.add(ListData("test1", "13:00"))
-        today_data.add(ListData("test2", "09:00"))
 
         today_recyclerView = view.findViewById(R.id.today_todolistview) as RecyclerView
         today_recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -55,6 +56,20 @@ class TodayFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val addIntent = Intent(requireContext(), TodoAddActivity::class.java)
-        startActivity(addIntent)
+        startActivityForResult(addIntent, 1000)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            when(requestCode) {
+                1000-> {
+                    todo_text = data!!.getStringExtra("todotext")
+                    todo_time = data?.getStringExtra("todotime")
+                    today_data.add(ListData(todo_text, todo_time))
+                    today_recyclerView.adapter?.notifyDataSetChanged()
+                }
+            }
+        }
     }
 }

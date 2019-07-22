@@ -5,16 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodoAddActivity">
+    tools:context=".TodoAddActivity"
+    tools:ignore="MissingPrefix">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        android:id="@+id/main_toolbar"
+        android:id="@+id/add_layout_toolbar"
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"
@@ -24,4 +26,66 @@
             android:textSize="20sp"/>
     </android.support.v7.widget.Toolbar>
 
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:scale_base_width="1080"
+        app:scale_base_height="1920">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What To Do ? "
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:scale_width="320"
+            app:scale_textsize="50"
+            app:scale_top="200"
+            app:scale_left="30"/>
+
+        <EditText
+            android:id="@+id/todo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:scale_width="700"
+            app:scale_height="100"
+            app:scale_top="200"
+            app:scale_left="350"
+            app:scale_textsize="40" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What TIME ?"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:scale_width="320"
+            app:scale_textsize="50"
+            app:scale_top="450"
+            app:scale_left="30"/>
+
+        <TimePicker
+            android:id="@+id/select_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_gravity="end"
+            app:scale_width="750"
+            app:scale_height="300"
+            app:scale_top="350"/>
+
+        <Button
+            android:id="@+id/todo_add_now_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD\nNOW"
+            android:background="@drawable/todo_add_button"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            app:scale_width="200"
+            app:scale_height="200"
+            app:scale_top="1400"
+            app:scale_textsize="40"/>
+    </com.ssomai.android.scalablelayout.ScalableLayout>
 </android.support.constraint.ConstraintLayout>
