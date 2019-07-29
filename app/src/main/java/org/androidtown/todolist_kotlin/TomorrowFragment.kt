@@ -1,5 +1,6 @@
 package org.androidtown.todolist_kotlin
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -21,6 +22,9 @@ class TomorrowFragment : Fragment(), View.OnClickListener {
     lateinit var tomorrow_recyclerView: RecyclerView
     lateinit var tomorrow_none: TextView
     lateinit var tomorrow_add: FloatingActionButton
+
+    lateinit var next_todo_text:String
+    lateinit var next_todo_time:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,20 @@ class TomorrowFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val addIntent = Intent(requireContext(), TodoAddActivity::class.java)
-        startActivity(addIntent)
+        startActivityForResult(addIntent, 2000)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            when(requestCode) {
+                2000-> {
+                    next_todo_text = data!!.getStringExtra("todotext")
+                    next_todo_time = data.getStringExtra("todotime")
+                    tomorrow_data.add(ListData(next_todo_text, next_todo_time))
+                    tomorrow_recyclerView.adapter?.notifyDataSetChanged()
+                }
+            }
+        }
     }
 }
