@@ -1,9 +1,7 @@
 package org.androidtown.todolist_kotlin
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
@@ -12,10 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.main.fragment_today.*
-import kotlinx.android.synthetic.main.fragment_today.view.*
 
 class TodayFragment : Fragment(), View.OnClickListener {
 
@@ -55,7 +50,7 @@ class TodayFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        val addIntent = Intent(requireContext(), TodoAddActivity::class.java)
+        val addIntent = Intent(requireContext(), TodayTodoAddActivity::class.java)
         startActivityForResult(addIntent, 1000)
     }
 
@@ -65,7 +60,7 @@ class TodayFragment : Fragment(), View.OnClickListener {
             when(requestCode) {
                 1000-> {
                     todo_text = data!!.getStringExtra("todotext")
-                    todo_time = data?.getStringExtra("todotime")
+                    todo_time = data.getStringExtra("todotime")
                     today_data.add(ListData(todo_text, todo_time))
                     today_recyclerView.adapter?.notifyDataSetChanged()
                 }

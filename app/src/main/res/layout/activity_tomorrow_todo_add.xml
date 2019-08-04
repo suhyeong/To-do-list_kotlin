@@ -5,18 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodoAddActivity"
+    tools:context=".TomorrowTodoAddActivity"
     tools:ignore="MissingPrefix">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        android:id="@+id/add_layout_toolbar"
+        android:id="@+id/tomorrow_add_layout_toolbar"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/toolbar_text"
+            android:id="@+id/tomorrow_toolbar_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date"
@@ -45,7 +45,7 @@
             app:scale_left="30"/>
 
         <EditText
-            android:id="@+id/todo_text"
+            android:id="@+id/tomorrow_todo_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:scale_width="700"
@@ -66,7 +66,7 @@
             app:scale_left="30"/>
 
         <TimePicker
-            android:id="@+id/select_time"
+            android:id="@+id/tomorrow_select_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:timePickerMode="spinner"
@@ -76,7 +76,7 @@
             app:scale_top="350"/>
 
         <Button
-            android:id="@+id/todo_add_now_button"
+            android:id="@+id/tomorrow_todo_add_now_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD\nNOW"

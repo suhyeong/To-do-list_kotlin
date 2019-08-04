@@ -1,43 +1,41 @@
 package org.androidtown.todolist_kotlin
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.app.NavUtils
 import android.view.MenuItem
 import android.view.View
 import android.widget.TimePicker
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.main_toolbar
-import kotlinx.android.synthetic.main.activity_todo_add.*
+import kotlinx.android.synthetic.main.activity_today_todo_add.select_time
+import kotlinx.android.synthetic.main.activity_tomorrow_todo_add.*
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.math.min
 
-class TodoAddActivity : AppCompatActivity(), View.OnClickListener, TimePicker.OnTimeChangedListener {
+class TomorrowTodoAddActivity : AppCompatActivity(), View.OnClickListener, TimePicker.OnTimeChangedListener {
 
     lateinit var time: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_todo_add)
+        setContentView(R.layout.activity_tomorrow_todo_add)
 
-        setSupportActionBar(add_layout_toolbar)
+        setSupportActionBar(tomorrow_add_layout_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        var today_date = LocalDate.now()
-        var strnow = today_date.format(DateTimeFormatter.ofPattern("EEE, MMM dd", Locale.ENGLISH))
-        toolbar_text.setText(strnow)
+        var c = Calendar.getInstance()
+        var sdf = SimpleDateFormat("EEE, MMM dd", Locale.ENGLISH)
+        c.add(Calendar.DATE, 1)
+        tomorrow_toolbar_text.setText(sdf.format(c.time))
 
-        select_time.setIs24HourView(true)
-        select_time.setOnTimeChangedListener(this)
+        tomorrow_select_time.setIs24HourView(true)
+        tomorrow_select_time.setOnTimeChangedListener(this)
 
-        todo_add_now_button.setOnClickListener(this)
+        tomorrow_todo_add_now_button.setOnClickListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -50,9 +48,16 @@ class TodoAddActivity : AppCompatActivity(), View.OnClickListener, TimePicker.On
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onTimeChanged(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        if(hourOfDay <= 9)
+            time = "0$hourOfDay:$minute"
+        else
+            time = "$hourOfDay:$minute"
+    }
+
     override fun onClick(v: View?) {
-        Snackbar.make(add_layout_toolbar, "ADD to TO DO LIST ?", Snackbar.LENGTH_SHORT).setAction("YES") {
-            var todotext = todo_text.text.toString()
+        Snackbar.make(tomorrow_add_layout_toolbar, "ADD to TO DO LIST ?", Snackbar.LENGTH_SHORT).setAction("YES") {
+            var todotext = tomorrow_todo_text.text.toString()
             val intent = Intent()
             intent.putExtra("todotext", todotext)
             intent.putExtra("todotime", time)
@@ -61,10 +66,4 @@ class TodoAddActivity : AppCompatActivity(), View.OnClickListener, TimePicker.On
         }.show()
     }
 
-    override fun onTimeChanged(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        if(hourOfDay <= 9)
-            time = "0$hourOfDay:$minute"
-        else
-            time = "$hourOfDay:$minute"
-    }
 }
